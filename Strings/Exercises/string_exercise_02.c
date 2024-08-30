@@ -8,5 +8,7 @@ int reprocessing() {
 }
 
 int main() {
+    do {
 
+    } while(reprocessing() == 1);
 }
