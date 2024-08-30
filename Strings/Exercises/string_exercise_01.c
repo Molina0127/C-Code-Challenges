@@ -9,7 +9,7 @@ int reprocessing() {
     } while(op != 1 && op != 2);
 }
 
-int verifyVogal(char letter) {
+int verifyVowel(char letter) {
     letter = toupper(letter);
     if (letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O' || letter == 'U') {
         return 1;
@@ -19,7 +19,7 @@ int verifyVogal(char letter) {
     }
 }
 
-char countVogals() {
+char countVowel() {
     char sentence[100];
     int cont = 0;
     printf("Escreva uma frase: ");
@@ -27,7 +27,7 @@ char countVogals() {
     fflush(stdin);
     
     for(int i = 0; sentence[i]; i++) {
-       if (verifyVogal(sentence[i])) {
+       if (verifyVowel(sentence[i])) {
             cont++;
        }
     }
@@ -37,7 +37,7 @@ char countVogals() {
 int main() {
     int cont;
     do {
-        cont = countVogals();
+        cont = countVowel();
         printf("O numero de vogais na frase eh: %d\n", cont);
     } while(reprocessing() == 1);
 
