@@ -20,14 +20,14 @@ int verifyVogal(char letter) {
 }
 
 char countVogals() {
-    char frase[100];
+    char sentence[100];
     int cont = 0;
     printf("Escreva uma frase: ");
-    fgets(frase, 100, stdin);
+    fgets(sentence, 100, stdin);
     fflush(stdin);
     
-    for(int i = 0; frase[i]; i++) {
-       if (verifyVogal(frase[i])) {
+    for(int i = 0; sentence[i]; i++) {
+       if (verifyVogal(sentence[i])) {
             cont++;
        }
     }
