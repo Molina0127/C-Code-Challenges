@@ -33,7 +33,7 @@ void countVowels() {
     int vowelsCounts[] = {0, 0, 0, 0, 0};
     char vowels[] = {'A', 'E', 'I', 'O', 'U'};
 
-    for(int i = 0; inputPhrase[i]; i++) {
+    for (int i = 0; inputPhrase[i]; i++) {
         inputPhrase[i] = toupper(inputPhrase[i]);
         switch (inputPhrase[i]) {
             case 'A':
@@ -56,7 +56,7 @@ void countVowels() {
 
     int totalVowels = 0;
 
-    for(int i = 0; i < 5; i++) {
+    for (int i = 0; i < 5; i++) {
         totalVowels += vowelsCounts[i];
         printf("O numero de ocorrencias da vogal '%c' na frase eh %d\n", vowels[i], vowelsCounts[i]);
     }
