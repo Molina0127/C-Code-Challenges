@@ -1,19 +1,34 @@
 #include <stdio.h>
+#include <string.h>
 #include <ctype.h>
-int reprocessing() {
-    int op;
-    do {
-        printf("Deseja verificar o numero de cada vogal novamente? (1 - sim/2 - nao)\n");
-        getchar();
-        scanf("%d", &op);
-    } while(op != 1 && op != 2);
+void cleanBuffer() {
+    int clean;
+    while((clean = getchar()) != '\n' && clean != EOF);
 }
 
-char verifyVowel() {
+int reprocessing() {
+    int op;
+    char input[10];
+    do {
+        printf("Deseja verificar o numero de cada vogal novamente? (1 - sim/2 - nao)\n");
+        fgets(input, 10, stdin);
+        sscanf(input, "%d", &op);
+        if ((op == 1) || (op == 2)) { 
+            break;
+        }
+        else {
+            cleanBuffer();
+            printf("Entrada invalida. Por favor, digite 1 ou 2.\n");
+        }
+    } while(op != 1 && op != 2);
+    
+    return op;
+}
+
+void verifyVowel() {
     char sentence[100];
     printf("Digite uma frase: ");
     fgets(sentence, 100, stdin);
-    fflush(stdin);
     int vowels[] = {0, 0, 0, 0, 0};
     char letters[] = {'A', 'E', 'I', 'O', 'U'};
 
@@ -36,13 +51,15 @@ char verifyVowel() {
                 vowels[4]++;
                 break;
         }
-
     }
 
-    for(int i = 0; i<5; i++) {
+    int sumVowels = 0;
+
+    for(int i = 0; i < 5; i++) {
+        sumVowels += vowels[i];
         printf("O numero de ocorrencias da vogal '%c' na frase eh %d\n", letters[i], vowels[i]);
     }
-
+    printf("O numero total de ocorrencias de vogais na frase eh %d\n", sumVowels);
 }
 
 int main() {
