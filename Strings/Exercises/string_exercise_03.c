@@ -1,54 +1,54 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-void cleanBuffer() {
-    int clean;
-    while((clean = getchar()) != '\n' && clean != EOF);
+void clearInputBuffer() {
+    int ch;
+    while((ch = getchar()) != '\n' && ch != EOF);
 }
 
-int reprocessing() {
-    int op;
+int shouldRepeat() {
+    int userOption;
     char input[10];
     do {
         printf("Deseja verificar o numero de cada vogal novamente? (1 - sim/2 - nao)\n");
         fgets(input, 10, stdin);
-        sscanf(input, "%d", &op);
-        if ((op == 1) || (op == 2)) { 
+        sscanf(input, "%d", &userOption);
+        if ((userOption == 1) || (userOption == 2)) { 
             break;
         }
         else {
-            cleanBuffer();
+            clearInputBuffer();
             printf("Entrada invalida. Por favor, digite 1 ou 2.\n");
         }
-    } while(op != 1 && op != 2);
+    } while(userOption != 1 && userOption != 2);
     
-    return op;
+    return userOption;
 }
 
-void verifyVowel() {
-    char sentence[100];
+void countVowels() {
+    char inputPhrase[100];
     printf("Digite uma frase: ");
-    fgets(sentence, 100, stdin);
-    int vowels[] = {0, 0, 0, 0, 0};
-    char letters[] = {'A', 'E', 'I', 'O', 'U'};
+    fgets(inputPhrase, 100, stdin);
+    int vowelsCounts[] = {0, 0, 0, 0, 0};
+    char vowels[] = {'A', 'E', 'I', 'O', 'U'};
 
-    for(int i = 0; sentence[i]; i++) {
-        sentence[i] = toupper(sentence[i]);
-        switch (sentence[i]) {
+    for(int i = 0; inputPhrase[i]; i++) {
+        inputPhrase[i] = toupper(inputPhrase[i]);
+        switch (inputPhrase[i]) {
             case 'A':
-                vowels[0]++;
+                vowelsCounts[0]++;
                 break;
             case 'E':
-                vowels[1]++;
+                vowelsCounts[1]++;
                 break;
             case 'I':
-                vowels[2]++;
+                vowelsCounts[2]++;
                 break;
             case 'O':
-                vowels[3]++;
+                vowelsCounts[3]++;
                 break;
             case 'U':
-                vowels[4]++;
+                vowelsCounts[4]++;
                 break;
         }
     }
@@ -56,16 +56,16 @@ void verifyVowel() {
     int sumVowels = 0;
 
     for(int i = 0; i < 5; i++) {
-        sumVowels += vowels[i];
-        printf("O numero de ocorrencias da vogal '%c' na frase eh %d\n", letters[i], vowels[i]);
+        sumVowels += vowelsCounts[i];
+        printf("O numero de ocorrencias da vogal '%c' na frase eh %d\n", letters[i], vowelsCounts[i]);
     }
     printf("O numero total de ocorrencias de vogais na frase eh %d\n", sumVowels);
 }
 
 int main() {
     do {
-        verifyVowel();
-    } while(reprocessing() == 1);
+        countVowels();
+    } while(shouldRepeat() == 1);
     
     return 0;
 }
