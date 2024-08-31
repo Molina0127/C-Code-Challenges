@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+
 void clearInputBuffer() {
     int ch;
     while((ch = getchar()) != '\n' && ch != EOF);
@@ -10,7 +11,7 @@ int shouldRepeat() {
     int userOption;
     char input[10];
     do {
-        printf("Deseja verificar o numero de cada vogal novamente? (1 - sim/2 - nao)\n");
+        printf("Deseja verificar o numero de vogais em alguma outra frase? (1 - sim/2 - nao)\n");
         fgets(input, 10, stdin);
         sscanf(input, "%d", &userOption);
         if ((userOption == 1) || (userOption == 2)) { 
@@ -53,13 +54,13 @@ void countVowels() {
         }
     }
 
-    int sumVowels = 0;
+    int totalVowels = 0;
 
     for(int i = 0; i < 5; i++) {
-        sumVowels += vowelsCounts[i];
-        printf("O numero de ocorrencias da vogal '%c' na frase eh %d\n", letters[i], vowelsCounts[i]);
+        totalVowels += vowelsCounts[i];
+        printf("O numero de ocorrencias da vogal '%c' na frase eh %d\n", vowels[i], vowelsCounts[i]);
     }
-    printf("O numero total de ocorrencias de vogais na frase eh %d\n", sumVowels);
+    printf("O numero total de ocorrencias de vogais na frase eh %d\n", totalVowels);
 }
 
 int main() {
