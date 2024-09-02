@@ -14,7 +14,7 @@ int shouldRepeat() {
         printf("\nDeseja verificar o numero de vogais em alguma outra frase? (1 - sim/2 - nao)\n");
         fgets(input, sizeof(input), stdin);
         
-        // Remove new line char
+        // Remove newline character
         input[strcspn(input, "\n")] = 0;
 
         if (strlen(input) > 1) {
@@ -39,9 +39,23 @@ int shouldRepeat() {
 }
 
 void countVowels() {
-    char inputPhrase[100];
-    printf("Digite uma frase: ");
-    fgets(inputPhrase, 100, stdin);
+    char inputPhrase[102];
+    
+    while(1) {
+        printf("Digite uma frase (maximo 100 caracteres): ");
+        fgets(inputPhrase, sizeof(inputPhrase), stdin);
+
+        // Verify if the input exceeds 100
+        if (strlen(inputPhrase) > 101 || (strlen(inputPhrase) == 101 && inputPhrase[100] != '\n')) {
+            clearInputBuffer();
+            printf("A frase deve conter no maximo 100 caracteres. Por favor, tente novamente.\n");
+            continue;
+        }
+        // Remove newline character
+        inputPhrase[strcspn(inputPhrase, "\n")] = 0;
+        break;
+    }
+
     int vowelsCounts[] = {0, 0, 0, 0, 0};
     char vowels[] = {'A', 'E', 'I', 'O', 'U'};
 
