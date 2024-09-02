@@ -47,7 +47,7 @@ void countVowels() {
         printf("Digite uma frase (maximo 100 caracteres): ");
         fgets(inputPhrase, sizeof(inputPhrase), stdin);
 
-        // Verify if the input exceeds 100
+        // Verify if the input exceeds MAX_CHARS
         if (strlen(inputPhrase) > MAX_CHARS + 1 || (strlen(inputPhrase) == MAX_CHARS + 1 && inputPhrase[MAX_CHARS] != '\n')) {
             clearInputBuffer();
             printf("A frase deve conter no maximo 100 caracteres. Por favor, tente novamente.\n");
