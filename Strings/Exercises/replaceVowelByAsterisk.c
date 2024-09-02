@@ -1,10 +1,11 @@
 #include <stdio.h>
+#include <string.h>
 #include <ctype.h>
 
 int reprocessing() {
     int op;
     do {
-        printf("Deseja contar o numero de vogais de outra frase? (1 - sim/2 - nao)\n");
+        printf("Deseja substituir as vogais de uma outra frase por '*'? (1 - sim/2 - nao)\n");
         scanf("%d", &op);
         getchar();
     } while(op != 1 && op != 2);
@@ -20,33 +21,23 @@ int verifyVowel(char letter) {
     }
 }
 
-char replaceVowelByAsterisk() {
-    if (verifyVowel(sentence[i])) {
-        sentence[i] = '*';
-    }
-}
-
-char countVowel() {
-    char sentence[100];
-    int cont = 0;
+char replaceVowelByAsterisk(char sentence[100]) {
     printf("Escreva uma frase: ");
     fgets(sentence, 100, stdin);
     fflush(stdin);
     
     for(int i = 0; sentence[i]; i++) {
-       replaceVowelByAsterisk();
+       if (verifyVowel(sentence[i])) {
+            sentence[i] = '*';
+       }
     }
-
-    printf("%s", sentence);
-    // return cont;
 }
 
 int main() {
-    int cont;
+    char sentence[100];
     do {
-        //cont = countVowel();
-        //printf("O numero de vogais na frase eh: %d\n", cont);
-        countVowel();
+        replaceVowelByAsterisk(sentence);
+        printf("%s", sentence);
     } while(reprocessing() == 1);
 
     return 0;
