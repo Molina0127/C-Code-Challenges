@@ -13,7 +13,7 @@ int shouldRepeat() {
     int userOption;
     char input[10];
     while(1) {
-        printf("\nDeseja verificar o numero de vogais em alguma outra frase? (1 - sim/2 - nao)\n");
+        printf("\nDeseja verificar a ocorrencia de cada vogal em alguma outra frase? (1 - sim/2 - nao)\n");
         fgets(input, sizeof(input), stdin);
         
         // Remove newline character
