@@ -2,6 +2,8 @@
 #include <string.h>
 #include <ctype.h>
 
+#define MAX_CHARS 100
+
 void clearInputBuffer() {
     int ch;
     while((ch = getchar()) != '\n' && ch != EOF);
@@ -39,14 +41,14 @@ int shouldRepeat() {
 }
 
 void countVowels() {
-    char inputPhrase[102];
+    char inputPhrase[MAX_CHARS + 2];
     
     while(1) {
         printf("Digite uma frase (maximo 100 caracteres): ");
         fgets(inputPhrase, sizeof(inputPhrase), stdin);
 
         // Verify if the input exceeds 100
-        if (strlen(inputPhrase) > 101 || (strlen(inputPhrase) == 101 && inputPhrase[100] != '\n')) {
+        if (strlen(inputPhrase) > MAX_CHARS + 1 || (strlen(inputPhrase) == MAX_CHARS + 1 && inputPhrase[MAX_CHARS] != '\n')) {
             clearInputBuffer();
             printf("A frase deve conter no maximo 100 caracteres. Por favor, tente novamente.\n");
             continue;
