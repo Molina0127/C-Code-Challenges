@@ -13,7 +13,7 @@ int shouldRepeat() {
     int userOption;
     char input[10];
     while(1) {
-        printf("\nDeseja contar o n° de letras maiusculas em alguma outra frase? (1 - sim/2 - nao)\n");
+        printf("\nDeseja converter as letras minusculas em letras maiusculas em alguma outra frase? (1 - sim/2 - nao)\n");
         fgets(input, sizeof(input), stdin);
         
         // Remove newline character
@@ -40,9 +40,8 @@ int shouldRepeat() {
     }
 }
 
-int verifyUpperLetter() {
+void convertLowerIntoUpper() {
     char inputPhrase[MAX_CHARS + 2];
-    int contUpperLetter = 0;
 
     while (1) {
         printf("Digite uma frase (maximo de 100 caracteres): ");
@@ -60,18 +59,16 @@ int verifyUpperLetter() {
     }
 
     for (int i = 0; inputPhrase[i]; i++) {
-        if (inputPhrase[i] >= 65 && inputPhrase[i] <= 90) {
-            contUpperLetter++;
+        if (inputPhrase[i] >= 97 && inputPhrase[i] <= 122) {
+            inputPhrase[i] = toupper(inputPhrase[i]);
         }
     }
-    return contUpperLetter;
+    printf("A frase apos transformar as letras minusculas em minusculas fica assim: %s\n", inputPhrase);
 }
 
 int main() {
-    int contUpperLetter;
     do {
-        contUpperLetter = verifyUpperLetter();
-        printf("O n° de letras maiusculas nessa frase eh %d", contUpperLetter);
+        convertLowerIntoUpper();
     } while(shouldRepeat() == 1);
 
     return 0;
