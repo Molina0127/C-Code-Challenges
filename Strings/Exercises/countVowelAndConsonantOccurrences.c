@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
+/* String Manipulation Part 1 - Exercise 2 */
+
 int vowel = 0, consonant = 0;
 int reprocessing() {
     int op;

@@ -1,5 +1,14 @@
 #include <stdio.h>
+#include <string.h>
 #include <ctype.h>
+/* String Manipulation Part 1 - Exercise 1 */
+#define MAX_CHARS 100
+
+void clearInputBuffer() {
+    int ch;
+    while((ch = getchar()) != '\n' && ch != EOF);
+}
+
 int reprocessing() {
     int op;
     do {

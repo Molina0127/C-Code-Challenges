@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
+/* String Manipulation Part 1 - Exercise 5 */
 #define MAX_CHARS 100
 
 void clearInputBuffer() {
