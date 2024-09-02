@@ -9,17 +9,18 @@ void clearInputBuffer() {
 
 int shouldRepeat() {
     int userOption;
-    char input[10];
+    char input[3];
     do {
         printf("Deseja verificar o numero de vogais em alguma outra frase? (1 - sim/2 - nao)\n");
-        fgets(input, 10, stdin);
+        fgets(input, sizeof(input), stdin);
+        //input[strcspn(input, "\n")] = 0;
         sscanf(input, "%d", &userOption);
         if ((userOption == 1) || (userOption == 2)) { 
             break;
         }
         else {
-            clearInputBuffer();
             printf("Entrada invalida. Por favor, digite 1 ou 2.\n");
+            clearInputBuffer();
         }
     } while(userOption != 1 && userOption != 2);
     
