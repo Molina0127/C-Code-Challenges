@@ -57,7 +57,7 @@ int verifyLetter(char letter) {
 }
 
 char countLetters() {
-    char inputPhrase[100];
+    char inputPhrase[MAX_CHARS];
     
     while(1) {
         printf("Digite uma frase (maximo 100 caracteres): ");

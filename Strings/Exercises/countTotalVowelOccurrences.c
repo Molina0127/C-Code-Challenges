@@ -37,7 +37,7 @@ int shouldRepeat() {
             printf("Entrada invalida. Por favor, digite 1 ou 2.\n");
         }
 
-    }
+    } while(userOption != 1 && userOption != 2);
 }
 
 int verifyVowel(char letter) {
@@ -51,7 +51,7 @@ int verifyVowel(char letter) {
 }
 
 int countVowels() {
-    char inputPhrase[100];
+    char inputPhrase[MAX_CHARS + 2];
     int counter = 0;
 
     while(1) {

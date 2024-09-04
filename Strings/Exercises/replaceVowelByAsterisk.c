@@ -6,15 +6,15 @@
 
 char inputPhrase[MAX_CHARS + 2];
 
-void clearInputBuffer() {
+void clearInputBuffer() {   
     int ch;
     while((ch = getchar()) != '\n' && ch != EOF);
 }
 
 int shouldRepeat() {
     int userOption;
-    char input[10];
-    while(1) {
+    char input[3];
+    do {
         printf("\nDeseja verificar o numero de vogais em alguma outra frase? (1 - sim/2 - nao)\n");
         fgets(input, sizeof(input), stdin);
         
@@ -39,7 +39,7 @@ int shouldRepeat() {
             printf("Entrada invalida. Por favor, digite 1 ou 2.\n");
         }
 
-    }
+    } while(userOption != 1 && userOption != 2);
 }
 
 int verifyVowel(char letter) {
@@ -54,7 +54,7 @@ int verifyVowel(char letter) {
 
 char replaceVowelByAsterisk(char inputPhrase[MAX_CHARS + 2]) {
     
-    while(1) {
+    do {
         printf("Escreva uma frase (maximo de 100 caracteres): ");
         fgets(inputPhrase, MAX_CHARS + 2, stdin);
         
@@ -62,12 +62,13 @@ char replaceVowelByAsterisk(char inputPhrase[MAX_CHARS + 2]) {
         if (strlen(inputPhrase) > MAX_CHARS + 1 || (strlen(inputPhrase) == MAX_CHARS + 1 && inputPhrase[MAX_CHARS] != '\n')) {
             clearInputBuffer();
             printf("A frase deve conter no maximo 100 caracteres. Por favor, tente novamente.\n");
-            continue;
         }
-        // Remove newline character
-        inputPhrase[strcspn(inputPhrase, "\n")] = 0;
-        break;
+        
     }
+    while (strlen(inputPhrase) > MAX_CHARS + 1 || (strlen(inputPhrase) == MAX_CHARS + 1 && inputPhrase[MAX_CHARS] != '\n'));
+    
+    // Remove newline character
+    inputPhrase[strcspn(inputPhrase, "\n")] = 0;
     
     for(int i = 0; inputPhrase[i]; i++) {
        if (verifyVowel(inputPhrase[i])) {
@@ -77,7 +78,6 @@ char replaceVowelByAsterisk(char inputPhrase[MAX_CHARS + 2]) {
 }
 
 int main() {
-    //char inputPhrase[MAX_CHARS + 2];
     do {
         replaceVowelByAsterisk(inputPhrase);
         printf("%s", inputPhrase);
