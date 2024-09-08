@@ -13,7 +13,7 @@ void clearInputBuffer() {
 
 int shouldRepeat() {
     int userOption;
-    char input[10];
+    char input[3];
     do {
         printf("\nDeseja verificar o numero de vogais em alguma outra frase? (1 - sim/2 - nao)\n");
         fgets(input, sizeof(input), stdin);

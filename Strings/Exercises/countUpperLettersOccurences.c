@@ -11,7 +11,7 @@ void clearInputBuffer() {
 
 int shouldRepeat() {
     int userOption;
-    char input[10];
+    char input[3];
     while(1) {
         printf("\nDeseja contar o n° de letras maiusculas em alguma outra frase? (1 - sim/2 - nao)\n");
         fgets(input, sizeof(input), stdin);
