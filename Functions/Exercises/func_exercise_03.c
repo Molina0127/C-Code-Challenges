@@ -1,7 +1,9 @@
+#include <stdio.h>
+/* Function Part 1 - Exercise 3 */
+
 // recebe três números inteiros a b c 
 // a > 1; 
 // retorne a soma de todos o n inteiros de b - c, divisivel por a
-#include <stdio.h>
 
 int verifyDivisibility(int a, int b, int c) {
     int soma = 0;

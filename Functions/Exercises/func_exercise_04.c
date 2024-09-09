@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
+/* Function Part 1 - Exercise 4 */
 
 char validatingLetter() {
     char letter;
