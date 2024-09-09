@@ -1,6 +1,9 @@
+#include <stdio.h>
+/* Function Part 1 - Exercise 2 */
+
 // recebe dois numeros inteiros
 // retorna a soma do intervalo desses numeros inteiros
-#include <stdio.h>
+
 int sumBehindValues(int num1, int num2) {
     int soma = 0;
     if (num1 > num2) {

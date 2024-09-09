@@ -1,8 +1,10 @@
+#include <stdio.h>
+/* Function Part 1 - Exercise 1 */
+
 // 1 se o numero for positivo
 // 0 se o numero for nulo
 // -1 se o numero for negativo
 
-#include <stdio.h>
 float verifyNumber(float num) {
     if (num < 0) {
         num = -1;
