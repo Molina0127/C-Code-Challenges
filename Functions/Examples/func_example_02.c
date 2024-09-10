@@ -1,4 +1,5 @@
 #include <stdio.h>
+/* Function Part 1 - Example 2 */
 float sum() {
     float num1, num2;
     printf("\nDigite um numero real: ");

@@ -1,4 +1,5 @@
 #include <stdio.h>
+/* Function Part 1 - Example 1 */
 void message() {
     printf("Sou uma funcao!\n");
 }

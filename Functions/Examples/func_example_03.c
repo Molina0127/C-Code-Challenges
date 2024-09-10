@@ -1,4 +1,5 @@
 #include <stdio.h>
+/* Function Part 1 - Example 3 */
 float soma (float x, float y) {
     return x+y;
 }
