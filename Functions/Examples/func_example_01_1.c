@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+/* Function Part 1 - Example 1 More Robust */
 void message() {
     printf("Sou uma funcao!\n");
 }

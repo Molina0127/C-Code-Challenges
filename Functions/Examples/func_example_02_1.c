@@ -1,4 +1,5 @@
 #include <stdio.h>
+/* Function Part 1 - Example 2 More Robust */
 int messages(int op) {
     switch(op) {
         case 1:

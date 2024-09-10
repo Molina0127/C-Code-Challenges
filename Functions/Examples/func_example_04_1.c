@@ -1,4 +1,5 @@
 #include <stdio.h>
+/* Function Part 1 - Example 4 More Robust */
 int sqr(int x);
 int main() {
     int square;
