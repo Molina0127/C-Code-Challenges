@@ -1,10 +1,5 @@
 #include <stdio.h>
 /* Function Part 1 - Exercise 5 */
-
-// receber a nota de três alunos
-// receber o peso de cada uma das notas
-// retornar a média ponderada
-
 float calculatingAverage(float test1, float value1, float test2, float value2, float test3, float value3) {
     float average;
     average = ((test1 * value1) + (test2 * value2) + (test3 * value3))/(value1 + value2 + value3);

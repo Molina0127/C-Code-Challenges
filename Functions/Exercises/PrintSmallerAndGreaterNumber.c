@@ -1,10 +1,5 @@
 #include <stdio.h>
 /* Function Part 1 - Exercise 6 */
-
-// ler cinco valores inteiros
-// imprimir o maior
-// imprimir o menor também
-
 int lower, greater;
 
 int lowerValue(int value) {
