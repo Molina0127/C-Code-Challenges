@@ -4,6 +4,17 @@
 /* String Manipulation Part 1 - Exercise 6 */
 #define MAX_CHARS 100
 
+// int main() {
+//     char palavra[101];
+    
+//     printf("Digite uma palavra: ");
+//     fgets(palavra, 101, stdin);
+    
+//     printf("%s", palavra);
+    
+//     return 0;
+// }
+
 void clearInputBuffer() {
     int ch;
     while((ch = getchar()) != '\n' && ch != EOF);
