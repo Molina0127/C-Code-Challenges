@@ -1,7 +1,7 @@
 #include <stdio.h>
 /* String Manipulation - List 1 - Exercise 1 */
-char convertLetter(char letter) {
-    if(letter >= 65 && letter <= 90) {
+char convertUpperIntoLower(char letter) {
+    if (letter >= 65 && letter <= 90) {
         letter = letter + 32;
     }
     
@@ -15,10 +15,10 @@ int main() {
     fgets(sentence, sizeof(sentence), stdin);
     
     for(int i = 0; i < 50; i++) {
-        sentence[i] = convertLetter(sentence[i]);
+        sentence[i] = convertUpperIntoLower(sentence[i]);
     }
     
-    printf("%s", sentence);
+    printf("A frase digitada em minusculo: %s", sentence);
 
     return 0;
 }
