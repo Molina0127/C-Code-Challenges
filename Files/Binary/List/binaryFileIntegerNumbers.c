@@ -35,6 +35,28 @@ void readIntegerNumbers(char arq[]) {
 
 }
 
+void updateThirdNumber(char arq[]) {
+    FILE *file = fopen(arq, "rb+"); // Abre para leitura e escrita
+    int num, novoNumero;
+
+    if (file) {
+        // Posiciona o ponteiro no terceiro inteiro (índice 2)
+        if (fseek(file, 2 * sizeof(int), SEEK_SET) == 0) {
+            printf("Digite o novo valor para o terceiro número: ");
+            scanf("%d", &novoNumero);
+
+            // Escreve o novo número na posição atual
+            fwrite(&novoNumero, sizeof(int), 1, file);
+            printf("Terceiro numero atualizado com sucesso!\n");
+        } else {
+            printf("Erro ao posicionar o ponteiro no arquivo.\n");
+        }
+        fclose(file);
+    } else {
+        printf("\nErro ao abrir arquivo!\n");
+    }
+}
+
 void createFile(char arq[]) {
     FILE *file = fopen(arq, "wb");
     int num;
@@ -49,6 +71,7 @@ void createFile(char arq[]) {
 
 }
 
+
 int main()
 {
     int op = 0;
@@ -60,7 +83,8 @@ int main()
         printf("2. Adicionar numeros inteiros\n");
         printf("3. Ler os numeros inteiros\n");
         printf("4. Limpar o arquivo\n");
-        printf("5. Sair\n");
+        printf("5. Atualizando numero\n");
+        printf("6. Sair\n");
         scanf("%d", &op);
 
         char arquivo[] = {"dados.bin"};
@@ -83,6 +107,9 @@ int main()
                 createFile(arquivo);
                 break;
             case 5:
+                updateThirdNumber(arquivo);
+                break;
+            case 6:
                 printf("Saindo ...\n");
                 break;
             default:
@@ -90,7 +117,7 @@ int main()
                 break;
         }
 
-    } while(op != 3);
+    } while(op != 6);
 
     return 0;
 }
