@@ -1,7 +1,8 @@
 #include <stdio.h>
 
-char compareTwoStrings(char str1, char str2) {
-    
+char compareTwoStrings(char *str1, char *str2) {
+    for (int i = 0; str1[i]; i++);
+    for (int i = 0; str2[i]; i++);
 }
 
 int main() {
@@ -18,6 +19,3 @@ int main() {
 
     return 0;
 }
-
-// separar a roupa e o monitor
-
