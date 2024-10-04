@@ -53,11 +53,11 @@ int main() {
 Em um arquivo texto, qualquer alteração que eu queira fazer
 nos dados que foram salvos no arquivo, eu preciso carregar todo
 o arquivo para a memória, fazer a alteração e depois escrever todo
-esse conteúdo novamente no arquivo
+esse conteúdo novamente no arquivo.
 
 No arquivo binário é possível fazer a alteração, indo diretamente no
 registro desejado, fazer a leitura daquele registro, alterar e escrever
 ele na mesma posição que o seu arquivo estava anteriormente, porque quando
 se trabalha com arquivos binários, os arquivos são lidos por blocos
-de bytes
+de bytes.
 */
