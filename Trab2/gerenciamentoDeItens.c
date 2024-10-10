@@ -1,7 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ncurses.h>
 
+void F1() {
+    int condicao = 0;
+    initscr();
+    keypad(stdscr, TRUE);
+    do {
+        clear();
+        printw("Ajuda do Programa:\n");
+        printw("Use as setinhas para escolher uma das opcoes de formatacao do arquivo binario.\n");
+        printw("Pressione F1 para sair da ajuda...\n");
+        refresh();
+
+        int tecla = getch();
+        if (tecla == KEY_F(1)) condicao = 1;
+
+    } while (condicao == 0);
+
+    endwin();
+}
 
 typedef struct {
     int dia, mes, ano;
@@ -42,7 +61,6 @@ void cadastrar() {
         printf("Inserir codigo de produto: ");
         fgets(cadastro[i].cod, 8, stdin);
         strtok(cadastro[i].cod, "\n");
-        //limparBuffer(); 
         system("clear");
 
         printf("Inserir descricao: ");
@@ -73,7 +91,6 @@ void cadastrar() {
         cadastro[i].existe = 1;
     }
     
-    //cadastrar(cadastro,quant);
     fwrite(cadastro, sizeof(item), quant, arquivo);
     fclose(arquivo);
     printf("Arquivos salvos com sucesso!\n");
@@ -114,7 +131,6 @@ void ler() {
     for (int i = 0; i < quant; i++) {
         fread(&cadastro, sizeof(item), 1, arquivo);
 
-        // Verifica se o registro existe logicamente ANTES de exibi-lo
         if (cadastro.existe) { 
             printf("\nCodigo do Produto: %s\nDescricao: %s\nQuantidade de Itens: %i\nPreco: %.2f\nCategoria: %s\nData de validade: %02i/%02i/%04i\n", 
                    cadastro.cod, cadastro.descricao, cadastro.qtd, cadastro.preco, 
@@ -259,119 +275,83 @@ void excluirLogicamente() {
     }
 
     item cadastro;
-    char codExclusao[8];
+    char codBusca[8];
     int encontrado = 0;
-
-    printf("Digite o codigo do produto a ser excluido logicamente: ");
+    
+    printf("Digite o codigo do produto que deseja excluir logicamente:\n");
     limparBuffer();
-    fgets(codExclusao, sizeof(codExclusao), stdin);
-    strtok(codExclusao, "\n"); // Remover o \n caso o usuário pressione enter
+    fgets(codBusca, sizeof(codBusca), stdin);
+    strtok(codBusca, "\n");
 
-    while (fread(&cadastro, sizeof(item), 1, arquivo) == 1) {
-        if (strcmp(cadastro.cod, codExclusao) == 0 && cadastro.existe) {
+    while (fread(&cadastro, sizeof(item), 1, arquivo)) {
+        if (strcmp(cadastro.cod, codBusca) == 0) {
+            if (cadastro.existe == 0) {
+                printf("O produto ja foi excluido.\n");
+                fclose(arquivo);
+                return;
+            }
+            cadastro.existe = 0; // Exclusão lógica
+            fseek(arquivo, -sizeof(item), SEEK_CUR);
+            fwrite(&cadastro, sizeof(item), 1, arquivo);
             encontrado = 1;
-            cadastro.existe = 0; // Marcar como excluído logicamente
-            fseek(arquivo, -sizeof(item), SEEK_CUR); // Voltar o ponteiro para o início do registro
-            fwrite(&cadastro, sizeof(item), 1, arquivo); // Sobrescrever o registro
-            printf("Produto com codigo %s excluido logicamente.\n", codExclusao);
-            break; // Sair do loop após encontrar e excluir o produto
+            break;
         }
     }
 
     if (!encontrado) {
-        printf("Produto com codigo %s nao encontrado ou ja excluido logicamente.\n", codExclusao);
+        printf("Produto nao encontrado.\n");
+    } else {
+        printf("Produto excluido logicamente com sucesso.\n");
     }
 
     fclose(arquivo);
 }
 
-void excluirFisicamente() {
-    FILE *arquivoOriginal = fopen("registros.bin", "rb");
-    if (!arquivoOriginal) {
-        printf("Erro ao abrir arquivo de produtos!\n");
-        return;
-    }
-
-    FILE *arquivoTemporario = fopen("temp.bin", "wb");
-    if (!arquivoTemporario) {
-        printf("Erro ao criar arquivo temporario!\n");
-        fclose(arquivoOriginal);
-        return;
-    }
-
-    char codExclusao[8];
-    item cadastro;
-    int encontrado = 0;
-
-    printf("Digite o codigo do produto a ser excluido fisicamente: ");
-    limparBuffer();
-    fgets(codExclusao, sizeof(codExclusao), stdin);
-    codExclusao[strcspn(codExclusao, "\n")] = 0;
-
-    // Copia os dados para o arquivo temporário, exceto o item a ser excluído
-    while (fread(&cadastro, sizeof(item), 1, arquivoOriginal) == 1) {
-        if (strcmp(cadastro.cod, codExclusao) != 0) {
-            fwrite(&cadastro, sizeof(item), 1, arquivoTemporario);
-        } else {
-            encontrado = 1;
-        }
-    }
-
-    fclose(arquivoOriginal);
-    fclose(arquivoTemporario);
-
-    if (encontrado) {
-        remove("registros.bin");
-        rename("temp.bin", "registros.bin");
-        printf("Produto com codigo %s excluido fisicamente.\n", codExclusao);
-    } else {
-        remove("temp.bin"); // Remove o arquivo temporário se o produto não for encontrado
-        printf("Produto com codigo %s nao encontrado.\n", codExclusao);
-    }
-}
-
-int main(){
-    int op;
+int main() {
+    int escolha;
+    initscr();
+    keypad(stdscr, TRUE);
+    cbreak();
+    noecho();
     
     do {
-        printf("Escolha entre as seguintes opcoes:\n");
-        printf("1 - Cadastrar Item\n2 - Ler Itens\n3 - Alterar Item\n4 - Consultar item por codigo\n5 - Consultar item por quantidade\n6 - Excluir item logicamente\n7 - Excluir item fisicamente\n0 - Sair\n");
-        scanf("%d", &op);
-        limparBuffer();
-        
-        
-        switch (op) {
-                case 1:
-                cadastrar();
-                break;
-            case 2:
-                ler();
-                break;
-            case 3:
-                alterar();
-                break;
-            case 4:
-                consultarPorCodigo();
-                break;
-            case 5:
-                consultarPorQuantidade();
-                break;
-            case 6:
-                excluirLogicamente();
-                break;
-            case 7:
-                excluirFisicamente();
-                break;
-            case 0:
-                printf("Encerrando o programa.\n");
-                break;
-            default:
-                printf("Opcao invalida!\n");
-                break;
+        clear();
+        printw("Menu Principal:\n");
+        printw("1. Cadastrar\n");
+        printw("2. Ler\n");
+        printw("3. Alterar\n");
+        printw("4. Consultar por código\n");
+        printw("5. Consultar por quantidade\n");
+        printw("6. Excluir logicamente\n");
+        printw("0. Sair\n"); // Linha correta para "0. Sair"
+        printw("Pressione F1 para ajuda\n"); // Separada corretamente
+        refresh();
+
+        int tecla = getch(); 
+
+        if (tecla == KEY_F(1)) {
+            F1();
+        } else {
+            escolha = tecla - '0'; // Converte a tecla para número
+
+            switch(escolha) {
+                case 1: /* Função cadastrar */ break;
+                case 2: /* Função ler */ break;
+                case 3: /* Função alterar */ break;
+                case 4: /* Função consultarPorCodigo */ break;
+                case 5: /* Função consultarPorQuantidade */ break;
+                case 6: /* Função excluirLogicamente */ break;
+                case 0: printw("Saindo...\n"); break;
+                default: printw("Opcao invalida!\n"); break;
             }
-        
-    } while (op != 0);
+        }
+
+        refresh();
+        printw("Pressione qualquer tecla para continuar...\n");
+        getch();
+    } while (escolha != 0);
+
+    endwin();
 
     return 0;
 }
-
