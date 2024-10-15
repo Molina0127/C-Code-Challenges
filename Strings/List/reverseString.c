@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+/* String Manipulation - List 1 - Exercise 6 */
 void treatWord(char *word) {
     char *p;
 
