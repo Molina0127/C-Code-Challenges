@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+/* String Manipulation - List 1 - Exercise 4 */
 char parameter = '1';
 
 void treatSentence(char *sentence) {
