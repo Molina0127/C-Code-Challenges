@@ -28,7 +28,6 @@ void showWordsTyped(char *sentence) {
 
 int main() {
     char sentence[50];
-    char word[30];
     
     printf("Digite uma frase: ");
     fgets(sentence, 50, stdin);
