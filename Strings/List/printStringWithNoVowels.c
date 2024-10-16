@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+/* String Manipulation - List 1 - Exercise 7 */
 void excludeVowels(char *sentence) {
     int length = strlen(sentence);
 
