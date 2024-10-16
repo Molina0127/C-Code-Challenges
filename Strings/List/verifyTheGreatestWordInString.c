@@ -20,16 +20,12 @@ void verifyGreatestWord(char *sentence) {
             currentLength++;
         }
     }
-    
     for(j = 0; j < greatest; j++) {
         greatestWord[j] = sentence[j + greatestStart];
     }
-    
     greatestWord[greatest] = '\0';
-    
     printf("A maior palavra da frase eh %s", greatestWord);
 }
-
 
 int main() {
     char sentence[50];
