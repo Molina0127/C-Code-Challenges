@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+/* String Manipulation - List 1 - Exercise 13 */
 void treatSentence(char *sentence) {
     char *p;
     if (p=(strchr(sentence, '\n'))) {
