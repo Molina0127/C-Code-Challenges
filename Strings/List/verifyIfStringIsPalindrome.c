@@ -48,10 +48,10 @@ int main() {
     int palindrome = verifyIfStringIsPalindrome(word, drow, length);
 
     if (palindrome) {
-        printf("A palavra %s eh um palindromo\n", word);
+        printf("A frase %s eh um palindromo\n", word);
     }
     else {
-        printf("A palavra %s nao eh um palindromo, seu contrario eh %s\n", word, drow);
+        printf("A frase %s nao eh um palindromo, seu contrario eh %s\n", word, drow);
     }
 
     return 0;
