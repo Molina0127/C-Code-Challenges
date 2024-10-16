@@ -3,12 +3,12 @@
 /* String Manipulation - List 1 - Exercise 8 */
 int countVowelOccurrences(char *sentence) {
     int length = strlen(sentence);
-
-    char vowels[5] = {'a', 'e', 'i', 'o', 'u'};
     int count = 0;
 
     for (int i = 0; i < length; i++) {
-        if(sentence[i] == 'a' || sentence[i] == 'e' || sentence[i] == 'i' || sentence[i] == 'o' || sentence[i] == 'u') {
+        if(sentence[i] == 'a' || sentence[i] == 'e' || sentence[i] == 'i' || sentence[i] == 'o' || sentence[i] == 'u' || 
+        sentence[i] == 'A' || sentence[i] == 'E' || sentence[i] == 'I' || sentence[i] == 'O' || sentence[i] == 'U'
+        ) {
             count++;        
         }
     }

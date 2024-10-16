@@ -3,12 +3,11 @@
 /* String Manipulation - List 1 - Exercise 7 */
 void excludeVowels(char *sentence) {
     int length = strlen(sentence);
-
-    char vowels[5] = {'a', 'e', 'i', 'o', 'u'};
+    char vowels[] = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
     int find = 0;
 
     for (int i = 0; i < length; i++) {
-        for (int j = 0; j < 5 && find == 0; j++) {
+        for (int j = 0; j < 10 && find == 0; j++) {
             if(sentence[i] == vowels[j]) {
                 find++;
             }
