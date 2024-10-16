@@ -20,7 +20,7 @@ void showWordsTyped(char *sentence) {
         if (sentence[j] != ' ') {
             printf("%c", sentence[j]);
         }
-        else if (sentence[j] == ' ') {
+        else if (sentence[j] == ' ' && sentence[j-1] != ' ') {
             printf("\n");
         }
     }
