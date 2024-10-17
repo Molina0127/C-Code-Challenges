@@ -1,6 +1,24 @@
 #include <stdio.h>
 #include <string.h>
 /* String Manipulation - List 1 - Exercise 15 */
+int shouldRepeat() {
+    int op = 1;
+    
+    do {
+        printf("\nDeseja digitar uma frase novamente?\n");
+        printf("0 - nao | 1 - sim\n");        
+        scanf("%d", &op);
+        
+        if (op != 0 && op != 1) {
+            printf("Opcao invalida.\n"); 
+        }
+        getchar();
+        
+    } while (op != 0 && op != 1);
+    
+    return op;
+}
+
 void verifyGreatestWord(char *sentence) {
     int length = strlen(sentence);
     int start = 0, greatestStart = 0, greatest = 0;
@@ -30,10 +48,14 @@ void verifyGreatestWord(char *sentence) {
 int main() {
     char sentence[50];
     
-    printf("Digite uma frase: ");
-    fgets(sentence, 50, stdin);
-    
-    verifyGreatestWord(sentence);
+     do {
+        printf("Digite uma frase: ");
+        fgets(sentence, 50, stdin);
+        
+        verifyGreatestWord(sentence);
+
+        sentence[0] = '\0';
+    } while (shouldRepeat() == 1);
 
     return 0;
 }
