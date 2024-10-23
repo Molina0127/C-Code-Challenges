@@ -2,7 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 #define MAX 50
-/* Structs - List 2 - Exercise 2 */
+/* Structs - List 2 - Exercise 3 */
 typedef struct {
     float real; // Real part
     float imag; // Imaginary part
