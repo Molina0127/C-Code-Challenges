@@ -2,7 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 #define MAX 50
-
+/* Structs - List 2 - Exercise 1 */
 struct band {
     char name[50];
     char musicStyle[30];
