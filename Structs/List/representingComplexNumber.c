@@ -26,7 +26,7 @@ void toUpper(char *str) {
     }
 }
 
-void imprimirComplexos(complex c) {
+void printComplex(complex c) {
     if (c.imag >= 0) {
         printf("%.2f + %.2fi\n", c.real, c.imag);
     }
@@ -35,21 +35,21 @@ void imprimirComplexos(complex c) {
     }
 }
 
-complex somarComplexos(complex c1, complex c2) {
+complex sumComplex(complex c1, complex c2) {
     complex soma;
     soma.real = c1.real + c2.real;
     soma.imag = c1.imag + c2.imag;
     return soma;
 }
 
-complex subtrairComplexos(complex c1, complex c2) {
+complex subComplex(complex c1, complex c2) {
     complex sub;
     sub.real = c1.real - c2.real;
     sub.imag = c1.imag - c2.imag;
     return sub;
 }
 
-complex multiplicarComplexos(complex c1, complex c2) {
+complex multComplex(complex c1, complex c2) {
     complex mult;
     mult.real = (c1.real * c2.real) - (c1.imag * c2.imag);
     mult.imag = (c1.real * c2.imag) + (c1.imag * c2.real);
@@ -73,17 +73,17 @@ int main() {
     
     printf("\n");
     
-    soma = somarComplexos(c1, c2);
+    soma = sumComplex(c1, c2);
     printf("Soma: ");
-    imprimirComplexos(soma);
+    printComplex(soma);
     
-    sub = subtrairComplexos(c1, c2);
+    sub = subComplex(c1, c2);
     printf("Subtracao: ");
-    imprimirComplexos(sub);
+    printComplex(sub);
     
-    mult = multiplicarComplexos(c1, c2);
+    mult = multComplex(c1, c2);
     printf("Multiplicacao: ");
-    imprimirComplexos(mult);
+    printComplex(mult);
 
 
     return 0;
