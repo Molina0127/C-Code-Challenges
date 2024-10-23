@@ -66,28 +66,5 @@ int main() {
 
     verifyInRectangle(v1, v2, p);
 
-    // printf("Escolha uma opcao (Digite o numero correspondente para acessa-la)\n");
-    // printf("1 - Mostrar todas as bandas\n2 - Pesquisar banda por Ranking\n3 - Listar Bandas por estilo musical\n4 - Verificar se a banda esta entre as favoritas\n");
-    // scanf("%d", &op);
-    // clearBuffer();
-
-    // switch (op) {
-    //     case 1:
-    //         showAllBands(bandsNumber, bands);
-    //         break;
-    //     case 2:
-    //         searchBand(bandsNumber, bands);
-    //         break;
-    //     case 3:
-    //         listBandsByMusicalStyle(bandsNumber, bands);
-    //         break;
-    //     case 4:
-    //         verifyBandInRanking(bandsNumber, bands);
-    //         break;
-    //     default:
-    //         printf("Opcao invalida '-'");
-    //         break;
-    // }
-
     return 0;
 }
