@@ -1,5 +1,5 @@
 #include <stdio.h>
-/* Struct - List 2 - Exercise 6 */
+/* Struct Validate Date */
 typedef struct {
     int day;
     int month;
