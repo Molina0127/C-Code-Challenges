@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 /* Structs - List 2 - Exercise 9 */
 typedef struct {
     int day;
@@ -19,10 +21,29 @@ typedef struct {
     int quant;
 } TipoCadastro;
 
+int count = 0;
+
+void clearBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
+void treatSentence(char *sentence) {
+    char *p;
+
+    if(p=strchr(sentence, '\n')) {
+        *p = 0;
+    }
+    else {
+        scanf("%[^\n]");
+        scanf("%*c");
+    }
+}
+
 void IniciaCadastro(TipoCadastro *cadastro) {
     cadastro->quant = 0;
 }
 
-int main() {
+int main() {    
     return 0;
 }
