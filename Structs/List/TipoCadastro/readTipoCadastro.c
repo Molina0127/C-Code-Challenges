@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-/* Structs - List 2 - Exercise 9 */
+/* Structs - List 2 - Exercise 10 */
 typedef struct {
     int day;
     int month;
