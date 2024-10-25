@@ -175,7 +175,8 @@ void SalarioIntevalo(TipoCadastro cadastro, float v1, float v2) {
         v1 = v2;
         v2 = salario;
     }
-    
+    salario = 0;
+
     // Imprime os funcionários nessa faixa de salario
     printf("\n=== Segue os funcionarios que recebem entre (R$ %.2f) e (R$ %.2f) ===\n", v1, v2);
     for(int i = 0; i < cadastro.quant; i++) {
@@ -189,9 +190,12 @@ void SalarioIntevalo(TipoCadastro cadastro, float v1, float v2) {
             printf("Sexo: %c\n", cadastro.Funcionario[i].sex);
             printf("Salario: %.2f\n", cadastro.Funcionario[i].salario);
             printf("----------------------------------------\n");
+            salario += cadastro.Funcionario[i].salario;
             found++;
         }
     }
+    printf("\n=== A media dos salarios encontrados eh (R$ %.2f) ===\n", salario/found);
+
     if (!found) {
         printf("\n=== Nao ha nenhum funcionario que receba nessa faixa de valor '-' ===\n", v1, v2);
     }
