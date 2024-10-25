@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-/* Structs - List 2 - Exercise 14 */
+/* Structs - List 2 - Exercise 15 */
 typedef struct {
     int day;
     int month;
@@ -239,6 +239,32 @@ void Imposto(TipoCadastro cadastro, char *name) {
     }
 }
 
+TipoReg BuscaNome(TipoCadastro cadastro, char *name) {
+    TipoReg funcionarioEncontrado;
+
+    strcpy(funcionarioEncontrado.name, "");
+    
+    int found = 0;
+
+    for(int i = 0; i < cadastro.quant && found == 0; i++) {
+        if (strcmp(cadastro.Funcionario[i].name, name) == 0) {
+            // Copia os resultados desse funcionario para a estrutura criada
+            strcpy(funcionarioEncontrado.name, cadastro.Funcionario[i].name);
+            strcpy(funcionarioEncontrado.rg, cadastro.Funcionario[i].rg);
+            funcionarioEncontrado.birthDate = cadastro.Funcionario[i].birthDate;
+            funcionarioEncontrado.sex = cadastro.Funcionario[i].sex;
+            funcionarioEncontrado.salario = cadastro.Funcionario[i].salario;
+            found++;
+        }
+    }
+
+    if (!found) {
+        printf("\n=== Funcionario '%s' nao encontrado '-' ===\n", name);
+    }
+
+    return funcionarioEncontrado;
+}
+
 int main() {
     TipoCadastro cadastro;
     int opcao;
@@ -260,6 +286,7 @@ int main() {
         printf("4 - Listar funcionarios em uma faixa de salario\n");
         printf("5 - Listar todos os funcionarios\n");
         printf("6 - Calcular imposto retido na fonte\n");
+        printf("7 - Busca nome do funcionario\n");
         printf("0 - Sair\n");
         printf("Digite sua opcao: ");
         scanf("%d", &opcao);
@@ -296,14 +323,36 @@ int main() {
                 ListaFuncionarios(cadastro);
                 break;
 
-            case 6: {
+            case 6: 
                 char nome[50];
                 printf("Digite o nome do funcionario para calcular o imposto:\n");
                 fgets(nome, 50, stdin);
                 treatSentence(nome);
                 Imposto(cadastro, nome);
                 break;
-            }
+
+            case 7:
+                char procuraNome[50];
+                printf("Digite o nome do funcionario que sera pesquisado:\n");
+                fgets(procuraNome, 50, stdin);
+                treatSentence(procuraNome);
+
+                TipoReg funcionario = BuscaNome(cadastro, procuraNome);
+                if (strcmp(funcionario.name, "") == 0) {
+                    printf("Funcionário não encontrado\n");
+                } else {
+                    printf("\n=== Funcionarios encontrados ===\n");
+                    printf("Nome: %s\n", funcionario.name);
+                    printf("RG: %s\n", funcionario.rg);
+                    printf("Data de Nascimento: %02d/%02d/%d\n", 
+                        funcionario.birthDate.day,
+                        funcionario.birthDate.month,
+                        funcionario.birthDate.year);
+                    printf("Sexo: %c\n", funcionario.sex);
+                    printf("Salario: %.2f\n", funcionario.salario);
+                    printf("----------------------------------------\n");
+
+                }
             
             case 0:
                 printf("\nEncerrando o programa...\n");
