@@ -69,7 +69,7 @@ void LeFuncionarios(TipoCadastro *cadastro) {
         scanf(" %c", &cadastro->Funcionario[cadastro->quant].sex);
         clearBuffer();
         
-        printf("Digite o CR do funcionario:\n");
+        printf("Digite o salario do funcionario:\n");
         scanf("%f", &cadastro->Funcionario[cadastro->quant].salario);
         clearBuffer();
 
