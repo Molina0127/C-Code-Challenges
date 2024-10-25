@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-/* Structs - List 2 - Exercise 10 */
+/* Structs - List 2 - Exercise 11 */
 typedef struct {
     int day;
     int month;
@@ -85,6 +85,23 @@ void LeFuncionarios(TipoCadastro *cadastro) {
     } while (userOption);
 }
 
+void ListaFuncionarios(TipoCadastro *cadastro) {
+    // Imprime os funcionários cadastrados
+    printf("\n=== Funcionarios cadastrados ===\n");
+    for(int i = 0; i < cadastro->quant; i++) {
+        printf("\nFuncionario %d:\n", i + 1);
+        printf("Nome: %s\n", cadastro->Funcionario[i].name);
+        printf("RG: %s\n", cadastro->Funcionario[i].rg);
+        printf("Data de Nascimento: %02d/%02d/%d\n", 
+               cadastro->Funcionario[i].birthDate.day,
+               cadastro->Funcionario[i].birthDate.month,
+               cadastro->Funcionario[i].birthDate.year);
+        printf("Sexo: %c\n", cadastro->Funcionario[i].sex);
+        printf("Salario: %.2f\n", cadastro->Funcionario[i].salario);
+        printf("----------------------------------------\n");
+    }
+}
+
 int main() {
     TipoCadastro cadastro;
     
@@ -95,21 +112,8 @@ int main() {
     // Teste de cadastro de funcionários
     printf("\n=== Iniciando cadastro de funcionarios ===\n");
     LeFuncionarios(&cadastro);
-    
-    // Imprime os funcionários cadastrados
-    printf("\n=== Funcionarios cadastrados ===\n");
-    for(int i = 0; i < cadastro.quant; i++) {
-        printf("\nFuncionario %d:\n", i + 1);
-        printf("Nome: %s\n", cadastro.Funcionario[i].name);
-        printf("RG: %s\n", cadastro.Funcionario[i].rg);
-        printf("Data de Nascimento: %02d/%02d/%d\n", 
-               cadastro.Funcionario[i].birthDate.day,
-               cadastro.Funcionario[i].birthDate.month,
-               cadastro.Funcionario[i].birthDate.year);
-        printf("Sexo: %c\n", cadastro.Funcionario[i].sex);
-        printf("Salario: %.2f\n", cadastro.Funcionario[i].salario);
-        printf("----------------------------------------\n");
-    }
+
+    ListaFuncionarios(&cadastro);
     
     return 0;
 }
