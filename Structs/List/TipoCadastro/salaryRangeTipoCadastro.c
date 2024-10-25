@@ -115,6 +115,12 @@ void LeFuncionarios(TipoCadastro *cadastro) {
 }
 
 void ListaFuncionarios(TipoCadastro cadastro) {
+    // Verifica se há funcionários cadastrados
+    if (cadastro.quant == 0) {
+        printf("\n=== Nao ha nenhum funcionario cadastrado '-' ===\n");
+        return;
+    }
+
     // Imprime os funcionários cadastrados
     printf("\n=== Funcionarios cadastrados ===\n");
     for(int i = 0; i < cadastro.quant; i++) {
@@ -159,6 +165,38 @@ void OrdenaSalario(TipoCadastro *cadastro) {
     }
 }
 
+void SalarioIntevalo(TipoCadastro cadastro, float v1, float v2) {
+    float salario;
+    int found = 0;
+
+    // Ordena os salarios
+    if (v1 > v2) {
+        salario = v1;
+        v1 = v2;
+        v2 = salario;
+    }
+    
+    // Imprime os funcionários nessa faixa de salario
+    printf("\n=== Segue os funcionarios que recebem entre (R$ %.2f) e (R$ %.2f) ===\n", v1, v2);
+    for(int i = 0; i < cadastro.quant; i++) {
+        if (cadastro.Funcionario[i].salario >= v1 && cadastro.Funcionario[i].salario <= v2) {
+            printf("Nome: %s\n", cadastro.Funcionario[i].name);
+            printf("RG: %s\n", cadastro.Funcionario[i].rg);
+            printf("Data de Nascimento: %02d/%02d/%d\n", 
+                cadastro.Funcionario[i].birthDate.day,
+                cadastro.Funcionario[i].birthDate.month,
+                cadastro.Funcionario[i].birthDate.year);
+            printf("Sexo: %c\n", cadastro.Funcionario[i].sex);
+            printf("Salario: %.2f\n", cadastro.Funcionario[i].salario);
+            printf("----------------------------------------\n");
+            found++;
+        }
+    }
+    if (!found) {
+        printf("\n=== Nao ha nenhum funcionario que receba nessa faixa de valor '-' ===\n", v1, v2);
+    }
+}
+
 int main() {
     TipoCadastro cadastro;
     int opcao;
@@ -173,13 +211,14 @@ int main() {
     printf("Inicializacao do cadastro: quantidade = %d\n", cadastro.quant);
     
     do {
-        printf("\n=== Menu de Gerenciamento de Funcionários ===\n");
-        printf("1 - Cadastrar novo funcionário\n");
-        printf("2 - Ordenar funcionários por nome\n");
-        printf("3 - Ordenar funcionários por salário\n");
-        printf("4 - Listar todos os funcionários\n");
+        printf("\n=== Menu de Gerenciamento de Funcionarios ===\n");
+        printf("1 - Cadastrar novo funcionario\n");
+        printf("2 - Ordenar funcionarios por nome\n");
+        printf("3 - Ordenar funcionarios por salario\n");
+        printf("4 - Listar funcionarios em uma faixa de salario\n");
+        printf("5 - Listar todos os funcionarios\n");
         printf("0 - Sair\n");
-        printf("Digite sua opção: ");
+        printf("Digite sua opcao: ");
         scanf("%d", &opcao);
         clearBuffer();
 
@@ -187,7 +226,7 @@ int main() {
             case 1:
                 LeFuncionarios(&cadastro);
                 break;
-                
+
             case 2:
                 OrdenaNome(&cadastro);
                 printf("\nFuncionários ordenados por nome:\n");
@@ -199,11 +238,20 @@ int main() {
                 printf("\nFuncionários ordenados por salário:\n");
                 ListaFuncionarios(cadastro);
                 break;
-                
+
             case 4:
+                float v1, v2;
+                printf("Digite o valor do primeiro salario que deseja comparar:\n");
+                scanf("%f", &v1);
+                printf("Digite o valor do segundo salario que deseja comparar:\n");
+                scanf("%f", &v2);
+                SalarioIntevalo(cadastro, v1, v2);
+                break;
+            
+            case 9:
                 ListaFuncionarios(cadastro);
                 break;
-                
+            
             case 0:
                 printf("\nEncerrando o programa...\n");
                 break;
