@@ -211,25 +211,27 @@ void Imposto(TipoCadastro cadastro, char *name) {
             found++;
             
             if (cadastro.Funcionario[i].salario <= 0) {
-                printf("\nFuncionario(a): %s com RG: %s tem salario invalido\n", cadastro.Funcionario[i].name, cadastro.Funcionario[i].rg);
+                printf("\nFuncionario(a): %s com RG: %s tem salario invalido\n", 
+                       cadastro.Funcionario[i].name, cadastro.Funcionario[i].rg);
             }
             else if (cadastro.Funcionario[i].salario <= taxLimit[0]) {
-                printf("\nFuncionario(a): %s com RG: %s tem isencao de imposto\n", cadastro.Funcionario[i].name, cadastro.Funcionario[i].rg);
+                printf("\nFuncionario(a): %s com RG: %s tem isencao de imposto\n", 
+                       cadastro.Funcionario[i].name, cadastro.Funcionario[i].rg);
             }
             else if (cadastro.Funcionario[i].salario <= taxLimit[1]) {
                 taxValue = (cadastro.Funcionario[i].salario * 0.10);
                 printf("\nFuncionario(a): %s com RG: %s tem R$ %.2f de imposto retido na fonte\n", 
-                       cadastro.Funcionario[i].name, taxValue, cadastro.Funcionario[i].rg);
+                       cadastro.Funcionario[i].name, cadastro.Funcionario[i].rg, taxValue);
             }
             else if (cadastro.Funcionario[i].salario <= taxLimit[2]) {
                 taxValue = (cadastro.Funcionario[i].salario * 0.15);
                 printf("\nFuncionario(a): %s com RG: %s tem R$ %.2f de imposto retido na fonte\n", 
-                       cadastro.Funcionario[i].name, taxValue, cadastro.Funcionario[i].rg);
+                       cadastro.Funcionario[i].name, cadastro.Funcionario[i].rg, taxValue);
             }
-            else if (cadastro.Funcionario[i].salario > taxLimit[2]) {
+            else {  // Simplificado a condição else if
                 taxValue = (cadastro.Funcionario[i].salario * 0.25);
                 printf("\nFuncionario(a): %s com RG: %s tem R$ %.2f de imposto retido na fonte\n", 
-                       cadastro.Funcionario[i].name, taxValue, cadastro.Funcionario[i].rg);
+                       cadastro.Funcionario[i].name, cadastro.Funcionario[i].rg, taxValue);
             }
         }
     }
