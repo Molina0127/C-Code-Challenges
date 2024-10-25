@@ -259,6 +259,7 @@ int main() {
         printf("3 - Ordenar funcionarios por salario\n");
         printf("4 - Listar funcionarios em uma faixa de salario\n");
         printf("5 - Listar todos os funcionarios\n");
+        printf("6 - Calcular imposto retido na fonte\n");
         printf("0 - Sair\n");
         printf("Digite sua opcao: ");
         scanf("%d", &opcao);
@@ -281,7 +282,7 @@ int main() {
                 ListaFuncionarios(cadastro);
                 break;
 
-            case 4:
+            case 4: {
                 float v1, v2;
                 printf("Digite o valor do primeiro salario que deseja comparar:\n");
                 scanf("%f", &v1);
@@ -289,10 +290,20 @@ int main() {
                 scanf("%f", &v2);
                 SalarioIntevalo(cadastro, v1, v2);
                 break;
+            }
             
-            case 9:
+            case 5:
                 ListaFuncionarios(cadastro);
                 break;
+
+            case 6: {
+                char nome[50];
+                printf("Digite o nome do funcionario para calcular o imposto:\n");
+                fgets(nome, 50, stdin);
+                treatSentence(nome);
+                Imposto(cadastro, nome);
+                break;
+            }
             
             case 0:
                 printf("\nEncerrando o programa...\n");
