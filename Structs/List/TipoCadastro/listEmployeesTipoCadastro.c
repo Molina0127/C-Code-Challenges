@@ -40,6 +40,37 @@ void treatSentence(char *sentence) {
     }
 }
 
+void inicializaFuncionariosPreDefinidos(TipoCadastro *cadastro) {
+    // Funcionário 1
+    strcpy(cadastro->Funcionario[0].name, "Maria Silva");
+    cadastro->Funcionario[0].birthDate.day = 15;
+    cadastro->Funcionario[0].birthDate.month = 3;
+    cadastro->Funcionario[0].birthDate.year = 1990;
+    strcpy(cadastro->Funcionario[0].rg, "1234567");
+    cadastro->Funcionario[0].sex = 'F';
+    cadastro->Funcionario[0].salario = 5000.00;
+
+    // Funcionário 2
+    strcpy(cadastro->Funcionario[1].name, "João Santos");
+    cadastro->Funcionario[1].birthDate.day = 22;
+    cadastro->Funcionario[1].birthDate.month = 7;
+    cadastro->Funcionario[1].birthDate.year = 1985;
+    strcpy(cadastro->Funcionario[1].rg, "7654321");
+    cadastro->Funcionario[1].sex = 'M';
+    cadastro->Funcionario[1].salario = 6500.00;
+
+    // Funcionário 3
+    strcpy(cadastro->Funcionario[2].name, "Ana Oliveira");
+    cadastro->Funcionario[2].birthDate.day = 10;
+    cadastro->Funcionario[2].birthDate.month = 12;
+    cadastro->Funcionario[2].birthDate.year = 1992;
+    strcpy(cadastro->Funcionario[2].rg, "9876543");
+    cadastro->Funcionario[2].sex = 'F';
+    cadastro->Funcionario[2].salario = 4500.00;
+
+    cadastro->quant = 3;
+}
+
 void IniciaCadastro(TipoCadastro *cadastro) {
     cadastro->quant = 0;
 }
@@ -85,19 +116,19 @@ void LeFuncionarios(TipoCadastro *cadastro) {
     } while (userOption);
 }
 
-void ListaFuncionarios(TipoCadastro *cadastro) {
+void ListaFuncionarios(TipoCadastro cadastro) {
     // Imprime os funcionários cadastrados
     printf("\n=== Funcionarios cadastrados ===\n");
-    for(int i = 0; i < cadastro->quant; i++) {
+    for(int i = 0; i < cadastro.quant; i++) {
         printf("\nFuncionario %d:\n", i + 1);
-        printf("Nome: %s\n", cadastro->Funcionario[i].name);
-        printf("RG: %s\n", cadastro->Funcionario[i].rg);
+        printf("Nome: %s\n", cadastro.Funcionario[i].name);
+        printf("RG: %s\n", cadastro.Funcionario[i].rg);
         printf("Data de Nascimento: %02d/%02d/%d\n", 
-               cadastro->Funcionario[i].birthDate.day,
-               cadastro->Funcionario[i].birthDate.month,
-               cadastro->Funcionario[i].birthDate.year);
-        printf("Sexo: %c\n", cadastro->Funcionario[i].sex);
-        printf("Salario: %.2f\n", cadastro->Funcionario[i].salario);
+               cadastro.Funcionario[i].birthDate.day,
+               cadastro.Funcionario[i].birthDate.month,
+               cadastro.Funcionario[i].birthDate.year);
+        printf("Sexo: %c\n", cadastro.Funcionario[i].sex);
+        printf("Salario: %.2f\n", cadastro.Funcionario[i].salario);
         printf("----------------------------------------\n");
     }
 }
@@ -108,12 +139,18 @@ int main() {
     // Teste de inicialização
     IniciaCadastro(&cadastro);
     printf("Inicializacao do cadastro: quantidade = %d\n", cadastro.quant);
+
+    // Inicializa com funcionários pré-definidos
+    inicializaFuncionariosPreDefinidos(&cadastro);
+    printf("\n=== Adicionando cadastros para teste ===\n");
+    printf("Inicializacao do cadastro: quantidade = %d\n", cadastro.quant);
     
+    ListaFuncionarios(cadastro);
+
     // Teste de cadastro de funcionários
     printf("\n=== Iniciando cadastro de funcionarios ===\n");
     LeFuncionarios(&cadastro);
 
-    ListaFuncionarios(&cadastro);
     
     return 0;
 }
