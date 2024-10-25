@@ -45,5 +45,8 @@ void IniciaCadastro(TipoCadastro *cadastro) {
 }
 
 int main() {    
+    TipoCadastro cadastro;
+    IniciaCadastro(&cadastro);
+
     return 0;
 }

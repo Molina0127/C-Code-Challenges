@@ -163,8 +163,14 @@ int main() {
     TipoCadastro cadastro;
     int opcao;
     
+    // Teste de inicialização
+    IniciaCadastro(&cadastro);
+    printf("Inicializacao do cadastro: quantidade = %d\n", cadastro.quant);
+    
     // Inicializa com funcionários pré-definidos
     inicializaFuncionariosPreDefinidos(&cadastro);
+    printf("\n=== Adicionando cadastros para teste ===\n");
+    printf("Inicializacao do cadastro: quantidade = %d\n", cadastro.quant);
     
     do {
         printf("\n=== Menu de Gerenciamento de Funcionários ===\n");
