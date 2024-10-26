@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-/* Structs - List 2 - Exercise 17 */
+/* Structs - List 2 - Exercise 18 */
 typedef struct {
     int day;
     int month;
@@ -296,7 +296,7 @@ void AtualizaSalario(TipoCadastro *cadastro) {
         clearBuffer();
         do {
             printf("Confirma a alteracao do salario de (R$ %.2f) para (R$ %.2f)\n", cadastro->Funcionario[i].salario, newSalary);
-            printf("Digite 1 - sim | Digite 0 - nao");
+            printf("Digite 1 - sim | Digite 0 - nao\n");
             scanf("%d", &op);
         } while (op != 1 && op != 0);
 
@@ -334,6 +334,46 @@ TipoReg ListaMaraja(TipoCadastro cadastro) {
     return maiorSalario;
 }
 
+void RemoveFuncionario(TipoCadastro *cadastro, char *rg) {
+    TipoCadastro tempCadastro;
+    TipoReg temp;
+    int found = 0;
+    int op, i = 0, j = 0;
+
+    for(i; i < cadastro->quant && found == 0; i++) {
+        if (strcmp(cadastro->Funcionario[i].rg, rg) == 0) {
+            do {
+                printf("Confirma a remocao do funcionario %s com RG: %s\n", cadastro->Funcionario[i].name, cadastro->Funcionario[i].rg);
+                printf("Digite 1 - sim | Digite 0 - nao\n");
+                scanf("%d", &op);
+            } while (op != 1 && op != 0);
+
+            if (op) {
+                for(j = i; j < cadastro->quant - 1; j++) {
+                    strcpy(cadastro->Funcionario[j].name, cadastro->Funcionario[j+1].name);
+                    strcpy(cadastro->Funcionario[j].rg, cadastro->Funcionario[j+1].rg);
+                    cadastro->Funcionario[j].birthDate = cadastro->Funcionario[j+1].birthDate;
+                    cadastro->Funcionario[j].sex = cadastro->Funcionario[j+1].sex;
+                    cadastro->Funcionario[j].salario = cadastro->Funcionario[j+1].salario;
+                }
+                printf("\n=== Funcionario removido com sucesso ===\n");
+
+                cadastro->quant--;
+                found = 1;
+            }
+            else {
+                printf("\n=== Operacao cancelada ===\n");
+            }
+
+        }
+    }
+
+    if (!found) {
+        printf("\n=== Funcionario nao encontrado '-' ===\n");
+    }
+
+}
+
 int main() {
     TipoCadastro cadastro;
     int opcao;
@@ -358,6 +398,7 @@ int main() {
         printf("7 - Busca nome do funcionario\n");
         printf("8 - Atualiza salario do funcionario\n");
         printf("9 - Mostra o funcionario de maior salario\n");
+        printf("10 - Remove funcionario\n");
         printf("0 - Sair\n");
         printf("Digite sua opcao: ");
         scanf("%d", &opcao);
@@ -446,6 +487,15 @@ int main() {
                     printf("Salario: %.2f\n", maiorSalario.salario);
                     printf("----------------------------------------\n");
                 }
+                break;
+            }
+
+            case 10: {
+                char procuraRg[10];
+                printf("Digite o rg do funcionario que sera pesquisado:\n");
+                fgets(procuraRg, 10, stdin);
+                treatSentence(procuraRg);
+                RemoveFuncionario(&cadastro, procuraRg);
                 break;
             }
             
