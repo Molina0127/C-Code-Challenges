@@ -12,5 +12,7 @@ void addIntegerNumber() {
 
 
 int main(){
+    addIntegerNumber();
+
     return 0;
 }
