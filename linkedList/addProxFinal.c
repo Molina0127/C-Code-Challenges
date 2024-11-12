@@ -55,4 +55,4 @@ int main () {
       resp = toupper(getch());
     } while (resp!='N' && resp!='S');
   } while (resp!='N');
-}        
+}
