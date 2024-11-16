@@ -1,4 +1,5 @@
 #include <stdlib.h>
+/* Linked List Andrea Example */
 typedef struct reg *no;
 struct reg {
     int info;
